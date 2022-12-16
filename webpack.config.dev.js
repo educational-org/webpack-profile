@@ -7,7 +7,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const Dotevn = require('dotenv-webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 //cofiguraciones del web pack
 module.exports ={
     //este es el punto de entrada
@@ -18,6 +18,8 @@ module.exports ={
         filename:'[name].[contenthash].js',
         // assetModuleFilename:'assets/images/[hash][ext][query]'
     },
+    mode:'development',
+    watch :true,
     resolve:{
         //qué tipo de extensiones va a identificar webpack e nuestro proyecto
         extensions:['.js'],
@@ -89,14 +91,6 @@ module.exports ={
                 }
             ]
         }),
-        new Dotevn(),
-        new CleanWebpackPlugin()
-    ],
-    optimization:{
-        minimize:true,
-        minimizer:[
-            new CssMinimizerPlugin(),
-            new TerserPlugin(),
-        ]
-    }
+        new Dotevn()
+    ]
 }
